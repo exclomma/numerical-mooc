@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>NumericMethods w/Python: Mod.1-3</title>
+</head>
+<body>                         <!--JavaScript solution with table, option-->
+<script JavaScript>
+  s="<table border=1><tr><td> t, sec </td><td> v, m/sec </td><td> ht, m </td><td> mass, kg </td></tr>";
+  var t=0, v=0, ht=0, mass=150, A=Math.PI/4;
+  var vDrag=0.5*1.091*A*0.15, g=9.81, ve=325;
+	var maxV=0, maxH=0, dt=0.1;
+  function Mr(no) {
+    return Math.round(100*no)/100}
+
+  while (ht>=0) {  // note that is is not necessary to print table, can comment out most of s, string
+    s+="<tr><td>"+ Mr(t) +"</td><td>"+ Mr(v) +"</td><td>"+ Mr(ht) +"</td><td>"+ Mr(mass) +"</td></tr>";
+    t+=dt;
+    if (t>5) {mass=50; ve=0}
+      else {mass-=20*dt}
+		v+= ((20*ve -v*Math.abs(v)*vDrag)/mass -g)*dt;
+		ht+= v*dt;
+		if (ht<0) {hitV=v, hitT=t, hitH=ht}
+		if (v>maxV) {maxV=v; tV=t; aH=ht}
+		if (ht>maxH) {maxH=ht; tH=t}
+   }
+  s+= "</table>";
+	s+= "Max. vel.= "+Mr(maxV)+"m/s at t= "+Mr(tV)+"sec, ht="+Mr(aH)
+	  +" m.<br>Max. ht= "+Mr(maxH)+"m at t= "+Mr(tH)+"sec.<br>Impact: "
+		+" before "+Mr(hitT)+" sec. at vel.= "+Mr(hitV)+" m/sec. & ht= "+Mr(hitH);
+  document.write(s);
+</script>
+
+  <!--- Prints Table w/detail at bottom:---
+t, sec  v, m/sec  ht, m  mass, kg  
+0 		0 		0 		150 
+0.1 	3.41 	0.34 	148 
+0.2 	6.88 	1.03 	146 
+0.3 	10.41 	2.07 	144 
+0.4 	14 		3.47 	142 
+0.5 	17.66 	5.24 	140 
+0.6 	21.37 	7.37 	138 
+0.7 	25.15 	9.89 	136 
+0.8 	28.99 	12.79 	134 
+0.9 	32.89 	16.08 	132 
+1 		36.86 	19.76 	130 
+1.1 	40.88 	23.85 	128 
+ ...                            -->
+</body>
+</html>
